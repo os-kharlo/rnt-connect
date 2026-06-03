@@ -843,6 +843,9 @@ body {
 }
 
 /* ---- Header ---- */
+.desktop .header-content > [data-block*=ApplicationTitle] .application-name {
+    display: flex;
+}
 /* Dark blue header matching the R&T brand */
 .header {
   background-color: var(--rnt-primary-900); 
