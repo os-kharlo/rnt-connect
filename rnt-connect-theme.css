@@ -1567,22 +1567,153 @@ div.feedback-message.feedback-message-info .feedback-message-close {
   color:            var(--color-text-funding);
 }
 
-/* ---- icon-label ---- */
+/* =========================================================================
+   A.  ROW LAYOUT  — no background on .icon-label itself
+   ========================================================================= */
 .icon-label {
+    align-items: center;
+    border-radius: var(--border-radius-rounded);     /* 8px */
+    display: flex;
+    gap: var(--rnt-space-0);
+    width: 100%;
+    min-height: 36px;
+}
+
+.icon-label__icon {
+    align-items: center;
+    border-radius: var(--border-radius-soft);        /* 4px */
+    display: flex;
+    flex-shrink: 0;
+    height: 36px;
+    width: 36px;
+    box-sizing: border-box;
+    justify-content: center;
+    padding: var(--rnt-space-200);                   /* 8px */
+}
+
+.icon-label__text {
+    align-items: center;
+    color: var(--color-text-brand);                  /* #2a4a66 */
+    display: flex;
+    flex: 1 0 0;
+    font-size: var(--font-size-base);                /* 16px */
+    font-weight: var(--font-semi-bold);              /* 600 */
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+/* =========================================================================
+   A2. EXPANDABLE HEADER layout (chevron sibling of .icon-label)
+   ========================================================================= */
+.osui-submenu__header {
+    align-items: center;
+    border-radius: var(--border-radius-rounded);     /* 8px */
+    min-height: 36px;
+    padding: 0;
+}
+.osui-submenu__header__item { align-items: center; }
+.osui-submenu__header__icon {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    font-size: 20px;
+    height: 36px;
+    width: 36px;
+    margin: 0;
+    justify-content: center;
+}
+
+/* =========================================================================
+   B.  ICON COLORS  — inactive = #5A7F9E, active = #2a4a66 (semantic tokens)
+   Scoped under .app-menu-links to beat OSUI's default icon color.
+   ========================================================================= */
+/* Inactive (default) */
+.app-menu-links .icon-label .icon-label__icon .icon,
+.osui-submenu__header__icon {
+    color: var(--color-icon-brand-secondary);        /* #5A7F9E (= --rnt-primary-600) */
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+}
+/* Collapse toggle icon — also lighter when inactive */
+.app-menu-control .icon {
+    color: var(--color-icon-brand-secondary);        /* #5A7F9E */
+}
+
+/* Active (current link / open expandable) → brand */
+.app-menu-links a.active .icon-label .icon-label__icon .icon,
+.app-menu-links .osui-submenu.active > .osui-submenu__header .icon-label__icon .icon,
+.app-menu-links .osui-submenu--is-open > .osui-submenu__header .osui-submenu__header__icon {
+    color: var(--color-icon-brand);                  /* #2a4a66 */
+}
+
+/* =========================================================================
+   C.  BACKGROUND  — on the LINK and the HEADER, never on .icon-label
+   ========================================================================= */
+/* Hover */
+a:not(.active):hover .icon-label,
+.osui-submenu:not(.osui-submenu--is-open) > .osui-submenu__header:hover {
+    background-color: var(--color-background-brand-secondary);
+}
+/* Active / open */
+a.active .icon-label,
+.osui-submenu--is-open > .osui-submenu__header {
+    background-color: var(--color-background-brand-secondary-hover);  /* #ccddea */
+}
+
+/* =========================================================================
+   D.  COLLAPSED STATE  (ancestor hook = .layout.menu-collapsed)
+   ========================================================================= */
+.layout.menu-collapsed .icon-label__text,
+.layout.menu-collapsed .osui-submenu__header__icon {
+    display: none;
+}
+.layout.menu-collapsed .icon-label {
+    justify-content: center;
+    width: auto;
+}
+.layout.menu-collapsed .app-menu-links {
+    align-items: center;
+}
+.layout.menu-collapsed .icon-label__icon {     /* keep 1:1 square */
+    height: 36px;
+    width: 36px;
+    flex-shrink: 0;
+}
+.layout.menu-collapsed .osui-submenu__header {
+    padding: 0;
+    justify-content: center;
+}
+
+/* =========================================================================
+   E.  SECTION + reduced motion
+   ========================================================================= */
+.app-menu-links {
+    border-bottom: var(--border-size-s) solid var(--color-border-default);
+    display: flex;
+    flex-direction: column;
+    gap: var(--rnt-space-400);                        /* 16px */
+    padding: var(--rnt-space-400) var(--rnt-space-300); /* 16px 12px */
+}
+@media (prefers-reduced-motion: reduce) {
+    .aside-navigation { transition: none; }
+}
+
+.layout-side .app-menu-links a,
+.menu-visible .app-menu-links a,
+.layout-side .app-menu-links .osui-submenu .osui-submenu__header {
+    padding: var(--space-none);
+}
+
+.layout-side .app-menu-links .osui-submenu__items {
+    padding: var(--space-none);
+}
+
+.layout-side .app-menu-links .osui-submenu__items a {
+    padding: var(--space-xs) var(--space-s);
+    padding-left: calc(var(--space-xl) + var(--space-xs));
+    height: 36px;
+    margin-top: var(--space-s);
     display: flex;
     align-items: center;
-    gap: var(--space-s);
-    min-width: 0;
-}
-.icon-label__icon {
-    flex-shrink: 0;
-    color: var(--rnt-primary-600);
-    font-size: var(--font-size-l);
-}
-.icon-label__text {
-    color: inherit;
-    font-family: var(--font-family);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
