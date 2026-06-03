@@ -1549,3 +1549,56 @@ html, body            { height: 100%; overflow: hidden; }
   border-radius: 4px;
 }
 
+/* ==========================================================================
+   Components — Button Group (Overrides OutSystems UI .button-group)
+   Escalation: L3 — restyle native classes, no parallel classes.
+   ========================================================================== */
+
+/* ---- Container ---- */
+.button-group {
+    background-color: var(--color-background-secondary);
+    border: var(--border-size-s) solid var(--color-border-default);
+    border-radius: var(--border-radius-rounded);
+    padding: var(--rnt-space-050); /* Creates the internal padding offset seen in Figma */
+    display: inline-flex;
+    gap: var(--space-none);
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ---- Base Item (Unselected) ---- */
+.button-group .button-group-item {
+    background-color: transparent;
+    border: var(--border-size-s) solid transparent; /* Reserves space so active state doesn't jump */
+    border-radius: var(--border-radius-soft);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-regular);
+    padding: var(--space-xs) var(--space-base);
+    transition: all var(--animation-duration) var(--animation-function);
+}
+
+/* Neutralize OS UI's default border-left separators */
+.button-group .button-group-item + .button-group-item {
+    border-left-color: transparent;
+}
+
+/* ---- Hover State ---- */
+.button-group .button-group-item:hover:not(.button-group-selected-item) {
+    background-color: var(--color-background-default-hover);
+    color: var(--color-text-brand);
+}
+
+/* ---- Focus State for Accessibility ---- */
+.has-accessible-features .button-group .button-group-item:focus {
+    box-shadow: 0 0 0 var(--border-size-m) var(--color-focus-outline);
+    outline: none;
+}
+
+/* ---- Active/Selected State ---- */
+.button-group .button-group-item.button-group-selected-item {
+    background-color: var(--color-background-brand-tertiary);
+    border-color: var(--color-border-brand);
+    color: var(--color-text-brand);
+    font-weight: var(--font-semi-bold);
+}
