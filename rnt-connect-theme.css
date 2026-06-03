@@ -1909,3 +1909,22 @@ html, body            { height: 100%; overflow: hidden; }
 .table td .icon:focus {
     color: var(--rnt-primary-800); 
 }
+
+.icon-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);          /* 8px between icon and label */
+    min-width: 0;
+}
+.icon-label__icon {
+    flex-shrink: 0;
+    color: var(--color-icon-brand);   /* #2a4a66, inherits active color from parent */
+    font-size: var(--font-size-l);
+}
+.icon-label__text {
+    color: inherit;                    /* picks up the link/header text color */
+    font-family: var(--font-family);   /* Manrope */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
