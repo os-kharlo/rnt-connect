@@ -1922,7 +1922,7 @@ html, body            { height: 100%; overflow: hidden; }
 }
 .icon-label__icon {
     flex-shrink: 0;
-    color: var(--color-icon-brand);   /* #2a4a66, inherits active color from parent */
+    color: var(--rnt-primary-600);   /* #2a4a66, inherits active color from parent */
     font-size: var(--font-size-l);
 }
 .icon-label__text {
@@ -1931,4 +1931,9 @@ html, body            { height: 100%; overflow: hidden; }
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+
+.osui-submenu__header__item {
+    color: var(--rnt-primary-800);
 }
