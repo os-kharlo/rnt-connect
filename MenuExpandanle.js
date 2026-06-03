@@ -1,4 +1,4 @@
-var AppMenuA11y = (function () {
+var AppMenuControl = (function () {
 
     // ── Private helpers ─────────────────────────────────────────────────────
 
