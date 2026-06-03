@@ -1768,3 +1768,44 @@ html, body            { height: 100%; overflow: hidden; }
   border-color:     var(--color-border-funding-secondary);      /* #3975bf · 4.28:1 UI  */
   color:            var(--color-text-funding);                  /* #04254f · 13.85:1 AA */
 }
+
+.layout-side .app-menu-links a,
+.layout-side .app-menu-links a.active,
+.layout-side .app-menu-links .osui-submenu .osui-submenu__header,
+.layout-side .app-menu-links .osui-submenu.active .osui-submenu__header,
+.desktop .layout-side .app-menu-links .osui-submenu__header:hover,
+.tablet .osui-submenu__header,
+.phone .osui-submenu__header,
+.tablet .osui-submenu.active .osui-submenu__header,
+.phone .osui-submenu.active .osui-submenu__header {
+    border-left: var(--border-size-none) solid transparent; /* 0px */
+}
+
+.layout-side .app-menu-links a.active,
+.layout-side .app-menu-links .osui-submenu.active .osui-submenu__header {
+    background-color: var(--color-background-brand-secondary); /* #e6eef5 */
+    border-radius: var(--border-radius-rounded);               /* 8px */
+}
+
+/* ─── Outer gutter: keeps all items away from sidebar edges ─── */
+.layout-side .app-menu-links {
+    padding: var(--space-s) var(--space-s);   /* 8px top/bottom, 8px left/right */
+}
+
+/* ─── Items must not exceed the new container width ─── */
+.layout-side .app-menu-links a,
+.layout-side .app-menu-links .osui-submenu {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ─── Pill/active background needs border-radius now that it's inset ─── */
+.layout-side .app-menu-links a,
+.layout-side .app-menu-links .osui-submenu__header {
+    border-radius: var(--border-radius-rounded);   /* 8px */
+}
+
+/* ─── Gap between menu items (Home link + each osui-submenu) ─── */
+.layout-side .app-menu-links {
+    gap: var(--space-s);   /* 4px between every sibling item */
+}
