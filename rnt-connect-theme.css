@@ -1576,6 +1576,7 @@ html, body            { height: 100%; overflow: hidden; }
     font-weight: var(--font-regular);
     padding: var(--space-xs) var(--space-base);
     transition: all var(--animation-duration) var(--animation-function);
+    height: 32px;
 }
 
 /* Neutralize OS UI's default border-left separators */
@@ -1597,8 +1598,23 @@ html, body            { height: 100%; overflow: hidden; }
 
 /* ---- Active/Selected State ---- */
 .button-group .button-group-item.button-group-selected-item {
-    background-color: var(--color-background-brand-tertiary);
-    border-color: var(--color-border-brand);
-    color: var(--color-text-brand);
-    font-weight: var(--font-semi-bold);
+    background-color: var(--rnt-primary-100);
+    border-color: var(--rnt-primary-600);
+    color: var(
+    --color-text-brand);
+    font-weight: var(
+    --font-semi-bold);
+}
+.button-group-item::after {
+  content: attr(data-label); /* or the button text */
+  font-weight: 600;
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+}
+.button-group-item {
+  display: inline-grid; /* stack real text + sizer in same cell */
 }
