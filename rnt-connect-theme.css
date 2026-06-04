@@ -1036,7 +1036,6 @@ footer.content-bottom {
 /* Footer Links */
 .content-bottom .footer.ThemeGrid_Container a {
   color: var(--color-neutral-0);
-  font-weight: var(--font-bold);
   text-decoration: none;
   transition: opacity var(--animation-duration) var(--animation-function);
 }
