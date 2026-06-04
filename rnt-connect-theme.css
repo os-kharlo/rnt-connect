@@ -1728,3 +1728,6 @@ a.active .icon-label,
 .header .ThemeGrid_Container {
       padding: var(--space-none) var(--space-xxl);
 }
+.content-bottom .footer.ThemeGrid_Container {
+      padding: var(--space-s) var(--space-xxl);
+}
