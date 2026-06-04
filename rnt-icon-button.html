@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R&amp;T Connect — Icon Button (rnt-icon-button)</title>
+
+<!--
+  ============================================================
+  Component:        Icon Button
+  Source:           Figma — R&T Connect_Phase-1, node 1107:12919
+  OutSystems UI:    Button pattern (customize via ExtendedClass)  — Escalation L3
+  CSS location:     Block/Theme CSS (component). Tokens come from rnt-connect-theme.
+  Prefix:           rnt-
+  Theme tokens consumed (defined in rnt-connect-theme, NOT here):
+                      --color-border-brand           (#2a4a66, light)
+                      --color-border-brand-secondary (#5a7f9e, light)
+                      --color-icon-brand             (#2a4a66, light)
+                      --color-icon-brand-on-brand    (#f3f7fa, light)
+                      --color-background-brand       (#2a4a66, light)
+                      --border-radius-pill           (9999px)
+                      --border-size-s                (1px)
+                      --rnt-space-200                (8px)
+                      --rnt-icon-s                   (24px)
+  Accessibility:    WCAG 2.2 AA — see notes inline
+  ============================================================
+  TOKEN REMAP (this pass): the original file declared its own brand/shape
+  tokens that did NOT exist in rnt-connect-theme. Rewired to real theme tokens:
+      --color-border-brand-default  ->  --color-border-brand / --color-icon-brand
+      --border-radius-full          ->  --border-radius-pill
+      --border-width-s              ->  --border-size-s
+      hard-coded #ffffff (filled)   ->  --color-icon-brand-on-brand
+  --color-border-brand-secondary already matched exactly (kept).
+  No theme token exists for 44px (touch target) or the 20px Figma glyph box;
+  glyph now defaults to --rnt-icon-s (24px). See flags below.
+  ============================================================
+  This single file is BOTH a live preview and your copy source.
+  For OutSystems: the theme already supplies the tokens above — copy ONLY the
+  .rnt-icon-button block (section 2) into your Block/Theme CSS, plus the small
+  component-config :root (section 1), then set ExtendedClass = "rnt-icon-button"
+  on the Button widget. DO NOT copy the preview shim (section 0).
+-->
+
+<style>
+  /* ============================================================
+     0) PREVIEW SHIM  —  DO NOT COPY INTO OUTSYSTEMS
+        These tokens live in rnt-connect-theme. They are mirrored
+        here ONLY so this standalone file renders. In OutSystems
+        the Theme CSS provides them; delete this whole block.
+     ============================================================ */
+  :root {
+    --rnt-primary-100: #f3f7fa;
+    --rnt-primary-600: #5a7f9e;
+    --rnt-primary-800: #2a4a66;
+
+    --color-border-brand:           var(--rnt-primary-800); /* #2a4a66 */
+    --color-border-brand-secondary: var(--rnt-primary-600); /* #5a7f9e */
+    --color-icon-brand:             var(--rnt-primary-800); /* #2a4a66 */
+    --color-icon-brand-on-brand:    var(--rnt-primary-100); /* #f3f7fa */
+    --color-background-brand:       var(--rnt-primary-800); /* #2a4a66 */
+
+    --border-radius-pill: 9999px;
+    --border-size-s:      1px;
+    --rnt-space-200:      8px;
+    --rnt-icon-s:         24px;
+  }
+
+  /* ============================================================
+     1) COMPONENT CONFIG  →  paste into Block CSS or Theme CSS
+        Component-local knobs only. Brand/shape come from the theme.
+     ============================================================ */
+  :root {
+    /* ⚠ FLAG: no theme token for 44px — this is the WCAG 2.5.8 primary
+       target size (>=44 preferred), not a brand value. Kept as a literal. */
+    --rnt-icon-button-size:      44px;
+
+    /* ⚠ FLAG: Figma glyph box was 20px, which is NOT in the theme icon scale
+       (--rnt-icon-s 24 / -m 32 / -l 40). Defaulted to the nearest token, 24px.
+       If design insists on 20px, override this one line with a literal. */
+    --rnt-icon-button-icon-size: var(--rnt-icon-s);   /* 24px */
+
+    --rnt-icon-button-gap:       var(--rnt-space-200); /* 8px — theme spacing primitive */
+  }
+
+  /* ============================================================
+     2) COMPONENT  →  paste into Block CSS or Theme CSS
+        Consumes theme tokens; defines no brand/shape tokens itself.
+     ============================================================ */
+
+  /* Block */
+  .rnt-icon-button {
+    /* reset the native <button> */
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    background-color: transparent;
+    cursor: pointer;
+
+    /* layout — centers the icon; gap supports an optional label too */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--rnt-icon-button-gap);
+
+    /* size — guarantees a >=24px target (WCAG 2.5.8) */
+    inline-size: var(--rnt-icon-button-size);
+    block-size: var(--rnt-icon-button-size);
+
+    /* shape */
+    border: var(--border-size-s) solid var(--color-border-brand-secondary);
+    border-radius: var(--border-radius-pill);
+    /* #5a7f9e border on #fff ~ 3.93:1 — passes 3:1 non-text contrast (SC 1.4.11) */
+
+    /* glyph inherits this via currentColor */
+    color: var(--color-icon-brand);
+    /* #2a4a66 glyph on #fff ~ 9.25:1 — passes both 3:1 non-text and 4.5:1 text */
+
+    transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+  }
+
+  /* Element — the icon placeholder slot */
+  .rnt-icon-button__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--rnt-icon-button-icon-size);
+    block-size: var(--rnt-icon-button-icon-size);
+    flex: 0 0 auto;
+  }
+  .rnt-icon-button__icon > svg,
+  .rnt-icon-button__icon > img,
+  .rnt-icon-button__icon > i {        /* <i> = OutSystems Icon widget renders an <i> */
+    inline-size: 100%;
+    block-size: 100%;
+    display: block;
+    font-size: var(--rnt-icon-button-icon-size); /* for icon-font glyphs */
+    line-height: 1;
+  }
+
+  /* Hover — darken border to brand + faint brand fill (color-mix on the token) */
+  .rnt-icon-button:hover {
+    border-color: var(--color-border-brand);
+    background-color: color-mix(in srgb, var(--color-border-brand) 8%, transparent);
+  }
+
+  /* Focus — visible, unobscured, >=2px (SC 2.4.7 / 2.4.11 / 2.4.13).
+     Uses the brand token (>=3:1). Swap to your theme focus token
+     (--color-focus-outline) if you want global focus consistency. */
+  .rnt-icon-button:focus-visible {
+    outline: var(--border-size-m, 2px) solid var(--color-border-brand);
+    outline-offset: var(--border-size-m, 2px);
+  }
+
+  /* Active / pressed */
+  .rnt-icon-button:active {
+    background-color: color-mix(in srgb, var(--color-border-brand) 16%, transparent);
+  }
+
+  /* Disabled — works for native :disabled and aria-disabled toggle blocks */
+  .rnt-icon-button:disabled,
+  .rnt-icon-button[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  /* Modifier — optional solid/filled variant */
+  .rnt-icon-button--filled {
+    background-color: var(--color-background-brand);
+    border-color: var(--color-border-brand);
+    color: var(--color-icon-brand-on-brand); /* #f3f7fa glyph on #2a4a66 ~ 9.0:1 */
+  }
+  .rnt-icon-button--filled:hover {
+    background-color: color-mix(in srgb, var(--color-background-brand) 88%, #000);
+  }
+
+  /* Respect reduced motion (SC 2.3.3) */
+  @media (prefers-reduced-motion: reduce) {
+    .rnt-icon-button { transition: none; }
+  }
+
+  /* ============================================================
+     Demo chrome only — NOT part of the component. Do not copy.
+     ============================================================ */
+  body { margin: 0; padding: 40px; background: #f4f6f8; color: #1c1c1c;
+         font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size: 18px; font-weight: 600; margin: 0 0 4px; }
+  p.lead { margin: 0 0 28px; color: #5a6672; font-size: 13px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
+          gap: 20px; max-width: 720px; }
+  .cell { background: #fff; border: 1px solid #e3e8ee; border-radius: 10px;
+          padding: 22px 12px 12px; display: flex; flex-direction: column;
+          align-items: center; gap: 14px; }
+  .cell span.label { font-size: 11px; letter-spacing: .03em; text-transform: uppercase;
+                     color: #8a96a3; }
+</style>
+</head>
+<body>
+
+  <h1>rnt-icon-button</h1>
+  <p class="lead">Figma node 1107:12919 · pill icon button · now consuming rnt-connect-theme tokens · icon is a placeholder — swap the <code>&lt;svg&gt;</code> for your OutSystems Icon.</p>
+
+  <div class="grid">
+
+    <!-- ▼▼▼ THE COMPONENT — copy this markup ▼▼▼ -->
+    <div class="cell">
+      <button type="button" class="rnt-icon-button" aria-label="Replace with your action label">
+        <span class="rnt-icon-button__icon" aria-hidden="true">
+          <!-- ICON PLACEHOLDER: replace this SVG with your icon / OutSystems Icon widget -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" focusable="false">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="8 7 17 7 17 16"></polyline>
+          </svg>
+        </span>
+      </button>
+      <span class="label">Default</span>
+    </div>
+    <!-- ▲▲▲ END COMPONENT ▲▲▲ -->
+
+    <div class="cell">
+      <button type="button" class="rnt-icon-button" aria-label="Example" autofocus>
+        <span class="rnt-icon-button__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" focusable="false">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="8 7 17 7 17 16"></polyline>
+          </svg>
+        </span>
+      </button>
+      <span class="label">Focus (Tab&nbsp;to&nbsp;see)</span>
+    </div>
+
+    <div class="cell">
+      <button type="button" class="rnt-icon-button rnt-icon-button--filled" aria-label="Example filled">
+        <span class="rnt-icon-button__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" focusable="false">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="8 7 17 7 17 16"></polyline>
+          </svg>
+        </span>
+      </button>
+      <span class="label">--filled</span>
+    </div>
+
+    <div class="cell">
+      <button type="button" class="rnt-icon-button" aria-label="Example disabled" disabled>
+        <span class="rnt-icon-button__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" focusable="false">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="8 7 17 7 17 16"></polyline>
+          </svg>
+        </span>
+      </button>
+      <span class="label">Disabled</span>
+    </div>
+
+  </div>
+
+</body>
+</html>
