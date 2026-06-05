@@ -1806,3 +1806,13 @@ footer a + a::before {
     display: inline-flex;
     align-items: center;
 }
+
+.pagination-container {
+  --color-neutral-4: var(--rnt-primary-300);   /* inactive border  ~ #CED4DA */
+  --color-neutral-8: var(--rnt-neutral-900);   /* numbers + arrows = #1E1E1E */
+  --color-primary:  var(--rnt-primary-500);    /* active border    = #7F9FB8 */
+}
+.pagination-container .pagination-button.is--active {
+  background-color: var(--rnt-primary-200);    /* active fill       = #E6EEF5 */
+  color: var(--rnt-neutral-900);               /* active text       = #1E1E1E */
+}
