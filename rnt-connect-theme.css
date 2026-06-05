@@ -1777,3 +1777,6 @@ footer a + a::before {
 [data-block*="Utilities.InlineSVG"] {
   display: contents;
 }
+.app-menu-links .icon-label .icon-label__icon .osui-inline-svg {
+    color: var(--color-icon-brand-secondary);
+}
