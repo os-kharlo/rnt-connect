@@ -1745,7 +1745,16 @@ a.active .icon-label,
     }
   
 
-    .card.padding-none .table {
+.card.padding-none .table {
   border-left: none;
   border-right: none;
+}
+
+footer a + a::before {
+    content: "|";
+    display: inline-block;
+    width: var(--space-xl);
+    text-align: center;
+    color: #ffffff;
+    opacity: 1;
 }
