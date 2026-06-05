@@ -1801,3 +1801,8 @@ footer a + a::before {
 .osui-tabs__content-item {
     padding-top: var(--space-none);
 }
+
+.osui-inline-svg {
+    display: inline-flex;
+    align-items: center;
+}
