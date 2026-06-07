@@ -1548,6 +1548,10 @@ div.feedback-message.feedback-message-info .feedback-message-close {
   border: var(--border-size-s) solid var(--color-border-default);
 }
 
+.card-detail-title {
+  color: var(--color-neutral-9);
+   font-size: var(--font-size-base);
+}
 /* ---- 4.3. Submenu ---- */
 .layout-side .app-menu-links .osui-submenu .osui-submenu__header {
   font-size: var(--font-size-base);
