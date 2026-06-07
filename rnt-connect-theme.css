@@ -2601,3 +2601,44 @@ label.mandatory::after {
 .rnt-blank-slate--actions-top .blank-slate-actions {
   order: -1;
 }
+
+/* === Sticky first & last column wrapper === */
+.sticky-col-table-wrapper {
+  display: block;            /* override display:contents if the parent uses it */
+  width: 100%;
+  overflow-x: auto;          /* enables horizontal scrolling */
+  overflow-y: visible;
+  position: relative;
+}
+
+.sticky-col-table-wrapper > table {
+  border-collapse: separate; /* required so the sticky cell borders render */
+  border-spacing: 0;
+}
+
+/* Sticky FIRST column */
+.sticky-col-table-wrapper th:first-child,
+.sticky-col-table-wrapper td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: #fff;          /* opaque so scrolled content doesn't show through */
+  border-right: var(--border-size-m) solid var(--color-border-default);  /* separation border */
+}
+
+/* Sticky LAST column */
+.sticky-col-table-wrapper th:last-child,
+.sticky-col-table-wrapper td:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  background: #fff;
+  border-left: var(--border-size-m) solid var(--color-border-default);   /* separation border */
+}
+
+/* Header cells of sticky columns sit above the body cells */
+.sticky-col-table-wrapper thead th:first-child,
+.sticky-col-table-wrapper thead th:last-child {
+  z-index: 3;
+  background: #f8f9fa;       /* match your header background */
+}
