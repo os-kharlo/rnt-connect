@@ -1816,55 +1816,6 @@ label.mandatory::after {
   font-weight: var(--font-bold);
 }
 
-/* SSO / MFA radio group (native OSUI widgets) */
-.radio-group.OSFillParent {
-  display: flex;
-  align-items: center;
-}
-.radio-group label[for] {
-  font-weight: var(--font-medium);
-  color: var(--color-text-default);
-  cursor: pointer;
-  margin-left: var(--space-s);
-}
-.radio-button {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 20px;                       /* control size; no token in icon scale */
-  height: 20px;
-  margin: 0;
-  flex: 0 0 auto;
-  border: 1.5px solid var(--color-border-secondary);   /* 1.5px: between size-s/m, no token */
-  border-radius: var(--border-radius-circle);
-  background-color: var(--color-background-default);
-  cursor: pointer;
-  position: relative;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
-}
-.radio-button:hover:not([disabled]) {
-  border-color: var(--color-border-brand);
-}
-.radio-button:checked {
-  border-color: var(--color-border-brand);
-  background-color: var(--color-background-brand);
-}
-.radio-button:checked::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 8px;
-  height: 8px;
-  border-radius: var(--border-radius-circle);
-  background-color: var(--color-background-default);
-}
-.radio-button:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--color-background-brand-secondary);
-}
-
-
 /* ---- 6.4. Dropdown Tags (OS UI virtual-select / vscomp widget) ----
    Third-party widget: !important is required to beat vscomp's own inline/late
    styles. The dropbox panel is appended to <body>, so its rules are NOT scoped
@@ -2641,4 +2592,76 @@ label.mandatory::after {
 .sticky-col-table-wrapper thead th:last-child {
   z-index: 3;
   background: var(--color-background-secondary);       /* match your header background */
+}
+
+/* =====================================================================
+   RNT Theme — invalidate OutSystemsUI has-accessible-features focus
+   overrides and standardize ONE focus state for all focusable elements.
+   ===================================================================== */
+
+/* 1) Kill the universal HAF focus ring + every component focus box-shadow,
+      so our outline below is the single source of truth. */
+.has-accessible-features :focus,
+.has-accessible-features :focus-visible,
+.has-accessible-features :focus::before,
+.has-accessible-features :focus::after {
+    box-shadow: none;
+}
+
+/* 2) STANDARD FOCUS — one consistent look for every focusable element. */
+.has-accessible-features a:focus,
+.has-accessible-features button:focus,
+.has-accessible-features input:focus,
+.has-accessible-features textarea:focus,
+.has-accessible-features select:focus,
+.has-accessible-features [tabindex]:focus,
+.has-accessible-features .btn:focus,
+.has-accessible-features .form-control[data-input]:focus,
+.has-accessible-features .form-control[data-textarea]:focus,
+.has-accessible-features .dropdown-container > select.dropdown-display:focus,
+.has-accessible-features .radio-button:focus,
+.has-accessible-features [data-checkbox]:focus,
+.has-accessible-features [data-switch]:focus,
+.has-accessible-features .pagination-button:focus,
+.has-accessible-features .osui-tabs__header-item:focus,
+.has-accessible-features .button-group-item:focus {
+    outline: var(--border-size-m) solid var(--color-focus-outline);
+    outline-offset: var(--border-size-m);
+}
+
+/* 3) Links: drop the HAF inverted-background focus treatment. */
+.has-accessible-features a:focus,
+.has-accessible-features a:focus:hover {
+    background-color: transparent;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* 4) Restore original lighter RNT control borders (HAF darkened them). */
+.has-accessible-features .form-control[data-input],
+.has-accessible-features .form-control[data-textarea] {
+    border-color: var(--color-neutral-5);
+}
+.has-accessible-features .form-control[data-input]:hover,
+.has-accessible-features .form-control[data-textarea]:hover {
+    border-color: var(--color-neutral-6);
+}
+.has-accessible-features .form-control[data-input]:focus,
+.has-accessible-features .form-control[data-textarea]:focus {
+    border-color: var(--color-primary);
+}
+
+/* 5) Radio & checkbox: restore RNT circular shape and lighter borders. */
+.has-accessible-features .radio-button,
+.has-accessible-features .radio-button::before,
+.has-accessible-features .radio-button::after {
+    border-radius: 100%;
+}
+.has-accessible-features .radio-button::before,
+.has-accessible-features [data-checkbox]::before {
+    border-color: var(--color-neutral-5);
+}
+.has-accessible-features .radio-button:hover::before,
+.has-accessible-features [data-checkbox]:hover::before {
+    border-color: var(--color-neutral-6);
 }
