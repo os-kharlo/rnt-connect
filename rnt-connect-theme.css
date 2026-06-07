@@ -2623,7 +2623,7 @@ label.mandatory::after {
   left: 0;
   z-index: 2;
   background: #fff;          /* opaque so scrolled content doesn't show through */
-  border-right: var(--border-size-m) solid var(--color-border-default);  /* separation border */
+  border-right: var(--border-size-s) solid var(--color-border-default);  /* separation border */
 }
 
 /* Sticky LAST column */
@@ -2633,12 +2633,12 @@ label.mandatory::after {
   right: 0;
   z-index: 2;
   background: #fff;
-  border-left: var(--border-size-m) solid var(--color-border-default);   /* separation border */
+  border-left: var(--border-size-s) solid var(--color-border-default);   /* separation border */
 }
 
 /* Header cells of sticky columns sit above the body cells */
 .sticky-col-table-wrapper thead th:first-child,
 .sticky-col-table-wrapper thead th:last-child {
   z-index: 3;
-  background: #f8f9fa;       /* match your header background */
+  background: var(--color-background-header);       /* match your header background */
 }
