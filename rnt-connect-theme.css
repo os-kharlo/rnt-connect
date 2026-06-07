@@ -2665,3 +2665,14 @@ label.mandatory::after {
 .has-accessible-features [data-checkbox]:hover::before {
     border-color: var(--color-neutral-6);
 }
+
+/* osui-submenu — expandable side-menu items (My Apps, Admin, Quick Links) */
+.has-accessible-features .osui-submenu:focus-within {
+    box-shadow: none;
+    outline: none;
+}
+.has-accessible-features .osui-submenu__header:focus {
+    outline: var(--border-size-m) solid var(--color-focus-outline);
+    outline-offset: var(--border-size-m);
+    box-shadow: none;
+}
