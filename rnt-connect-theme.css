@@ -2691,3 +2691,16 @@ label.mandatory::after {
     box-shadow: 0px 16px 32px -8px rgba(12, 12, 13, 0.4);
     padding: 16px;
 }
+
+.sortable-icon {
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 10.6667L8 14.6667L12 10.6667M12 5.33334L8 1.33334L4 5.33334' stroke='%23757575' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+}
+.sortable-icon::before,
+.sortable-icon::after {
+  content: none;
+}
