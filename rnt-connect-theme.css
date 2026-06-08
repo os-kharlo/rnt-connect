@@ -2685,8 +2685,8 @@ label.mandatory::after {
     width: 100%;
     max-width: 660px;
     box-sizing: border-box;
-    background: #FFFFFF;
-    border: 1px solid #D9D9D9;
+    background: var(--color-background-default-default, #ffffff);
+    border: var(--border-size-s) solid var(--color-border-default);
     border-radius: 8px;
     box-shadow: 0px 16px 32px -8px rgba(12, 12, 13, 0.4);
     padding: 16px;
@@ -2703,4 +2703,8 @@ label.mandatory::after {
 .sortable-icon::before,
 .sortable-icon::after {
   content: none;
+}
+
+.osui-overflow-menu {
+  --border-radius-rounded: 8px;
 }
