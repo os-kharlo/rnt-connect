@@ -2677,7 +2677,7 @@ label.mandatory::after {
     box-shadow: none;
 }
 
-.filter-popover.popover {
+.active-screen > .filter-popover.popover {
     width: 660px !important;
     max-width: 660px !important;
 }
