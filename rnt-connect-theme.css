@@ -2708,3 +2708,19 @@ label.mandatory::after {
 .osui-overflow-menu {
   --border-radius-rounded: 8px;
 }
+
+.osui-balloon {
+  width: 660px;
+}
+
+.osui-overflow-menu .btn {
+    --border-radius-rounded: 8px;
+}
+
+.osui-overflow-menu__balloon.osui-balloon {
+  background-color: var(--color-background-default-default, #ffffff);
+  border: var(--border-size-s) solid var(--color-border-default);
+  border-radius: 8px;
+  box-shadow: 0px 16px 32px -8px rgba(12, 12, 13, 0.4);
+}
+
